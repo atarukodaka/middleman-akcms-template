@@ -24,7 +24,6 @@ activate :akcms do |akcms|
   akcms.archive_month_link = 'archives/%<year>04d-%<month>02d.html'
   akcms.tag_template = "templates/tag_template.html"
   akcms.pagination_per_page = 10
-  akcms.series_title_template = "%{name} [%{number}]: %{article_title}" 
 end
 
 ## other extensions
