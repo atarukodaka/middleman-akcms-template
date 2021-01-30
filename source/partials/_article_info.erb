@@ -1,0 +1,12 @@
+
+<!-- required locals: article -->
+
+<div class="article_info">
+  <% article.tags.each do |a| %>
+  [<%= link_to(h(a), sitemap.tags[a]) %>]
+  <% end %>
+  <% if ! article.parent.nil? %>
+  | <%= link_to(h(article.directory.name), article.parent) %> |
+  <% end %>
+  <%= link_to(article.date.strftime("%d %b %Y"), article) %> |
+</div>

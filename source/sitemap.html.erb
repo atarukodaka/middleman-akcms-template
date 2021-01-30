@@ -1,0 +1,16 @@
+---
+title: Sitemap
+layout: layout
+type: sitemap
+group: navigation
+---
+
+<% root_url = data.config.site_info.url %>
+
+<h1>Sitemap</h1>
+
+<div>
+  <ul>
+    <%= partial("partials/directory_recurse", locals: {resource: sitemap.find_directory_index(""), include_siblings: false}) %>
+  </ul>
+</div>

@@ -1,0 +1,58 @@
+<div id="sidebar">
+  <aside>
+    <h2>PROFILE</h2>
+    <p>
+      <%= h(data.config.site_info.author) %> 
+      <%= link_to("@" + h(data.config.site_info.twitter), "http://www.twitter.com/" + h(data.config.site_info.twitter)) if data.config.site_info.twitter %>
+    </p>
+    <p><%= h(data.config.site_info.description) %></p>
+  </aside>
+  <!-- ================ -->
+  <aside>
+    <h2>DIRECTORIES</h2>
+    <ul>
+      <% sitemap.find_directory_index("").children.select(&:directory_index?).each {|res| %>
+      <%= partial("partials/directory_recurse", locals: {resource: res, options: {directory_only: true}}) %>
+      <% } %>
+    </ul>
+  </aside>
+  <!-- ================ -->
+  <aside>
+    <h2>TAGS</h2>
+    <ul class="tag_box inline">
+      <li>
+	<% sitemap.tags.each {|name, res| %>
+	<% size = res.locals[:articles].size %>
+	<%= link_to("#{h(name)}<span>#{size}</span>", res) %>
+	<% } %>
+      </li>
+    </ul>
+  </aside>
+  <!-- ================ -->
+  <aside>
+    <h2>RECENT</h2>
+    <ul>
+      <% sitemap.articles.first(10).each {|page| %>
+      <li> <%= link_to(h(page.title), page) %></li>
+      <% } %>
+    </ul>
+  </aside>
+  <!-- ================ -->
+  <aside>
+    <h2>MONTHLY ARCHIVES</h2>
+    <ul>
+      <% sitemap.archives[:month].each {|month, res|%>
+      <li> <%= link_to(month.strftime("%b %Y"), res) %> (<%= res.locals[:articles].size %>)</li>
+      <% } %>
+    </ul>
+  </aside>
+  <!-- ================ -->
+  <aside>
+    <h2>AFFILIATES</h2>
+    <div>
+      <%= amazon('B019GNUT0C', :detail) %>
+      <%= amazon('4403320341', :detail) %>
+    </div>
+  </aside>
+
+</div>

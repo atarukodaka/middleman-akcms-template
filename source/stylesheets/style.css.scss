@@ -1,0 +1,208 @@
+/*****************************************************************/
+/* layout */
+
+body {    
+    background-color: #eee;
+    font-family: "Segoe UI", MeiryoKe_PGothic, "Meiryo", "Meiryo UI", Georgia, Palatino, "Palatino Linotype", Times, "Times New Roman", serif;
+    font-size: medium;
+}
+
+body > .container {
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+  background-color: white;
+}
+
+/*****************************************************************/
+/* link */
+
+a {
+    color: #006ffa;  /* visited */
+}
+a:visited, a:hover {
+    color: #337fda;  /* unvisited */
+    text-decoration: none;
+}
+
+/*****************************************************************/
+/* panes */
+
+#header {
+    .eyecatch {
+	background-color: black;
+	margin-top: 10px;
+	
+	.sitename {
+	    padding: 20px;
+	    
+	    font-weight: lighter;
+	    font-size: x-large;
+	    color: #aaa;
+	    a { color: #aaa; }
+	}
+    }
+}
+
+#sidebar {
+    font-size: small;
+    margin-left: 20px;
+    
+    aside {
+	border-top: 1px solid #eeeeee; 
+
+	h2 {
+	    color: #999999;
+	    font-size: medium;
+	}
+	li { margin-left: -1em; }
+    }
+}
+
+#footer {
+    background-color: white;
+    padding: 20px;
+    font-size: small;
+    
+    .copyright {
+	border-top: 1px solid black;
+	padding: 10px;
+    }
+}
+  
+/*****************************************************************/
+
+#main {
+    /* pad some px in each side */
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+    
+    .breadcrumb {
+	font-size: small;
+	background-color: white; 
+	
+	border-top: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	
+	li.active {
+	    font-weight: bold;
+	}
+    }
+
+    /* table of contents */
+    .toc {
+	button {
+	    display: block;
+	    margin: 10px 10px 10px auto;
+	}
+	#toc_content {
+	    border: 1px solid rgb(204, 204, 204);
+	    padding: 20px;
+	    background-color: rgb(252, 252, 252);
+	    li {
+		list-style-type: decimal;
+	    }
+	}
+	
+    }
+    /* **************************************************************** */
+    .content {
+	padding-top: 1em;
+	padding-bottom: 1em;
+    }
+    .article_info {
+	font-size: small;
+	text-align: right;
+    }
+
+    /* h1-h6 */
+    @for $i from 1 through 6 {
+	h#{$i} {
+	    font-weight: bold;
+	    border-bottom: 1px solid #888;
+	    padding-top: 10px;
+	    padding-bottom: 5px;
+	}
+    }
+    h1 { font-size: xx-large; }
+    h2 { font-size: x-large; }
+    h3, h4 { font-size: large; }
+    h5, h6 { font-size: medium; }
+
+    img {
+	box-shadow: 1px 1px 4px rgba(0,0,0,.5);
+	max-width: 90%;
+	margin: 20px auto 20px auto;
+	display: block;
+    }
+    dl {
+	dt, dd { margin: 10px 0 10px 0;}
+	dd { padding-left: 20px; }
+    }
+
+    pre {
+	margin: 30px auto 30px auto;
+	font-size: small;
+    }
+    .pagination, .pager{
+	text-align: center;
+	font-size: small;
+    }
+
+    .continue_reading {
+	font-size: small;
+	font-style: italic;
+	text-align: right;
+    }
+    .article_summary {
+	h1 {
+	    font-size: large;
+	    margin-bottom: 5px;
+	}
+    }
+    .references {
+	border-top: 10px solid #e4e4e4;
+	background-color: #f8f8f8;
+	padding: 16px;
+
+	.header {
+	    font-weight: bold;
+	    /* background-color: #e4e4e4; */
+	    margin-bottom: 20px;
+	}
+    }
+}
+
+/*****************************************************************/
+/* numbering headings */
+
+body {
+ counter-reset: h1;
+}
+.numbering_headings {
+    @for $i from 1 through 6 {
+	h#{$i} {
+	    counter-increment:h#{$i};
+	    counter-reset:h#{$i+1};
+	}
+	h#{$i}:before {
+	    color: #888;  font-size: large; 
+	}
+    }
+    h2:before{content: counter(h2) ". ";}
+    h3:before{content: counter(h2) "." counter(h3) ". "; }
+    h4:before{content: counter(h2) "." counter(h3) "." counter(h4) ". "; }
+    h5:before{content: counter(h2) "." counter(h3) "." counter(h4) "." counter(h5) ". "; }
+}
+
+/*****************************************************************/
+.amazon_item {
+    padding: 10px;
+    border: 1px solid #E3E3E3;
+    overflow: hidden;
+    background-color: rgba(246, 246, 246, 0.5);
+    margin-top: 1em;
+    /* margin-bottom: 1em; */
+}

@@ -1,0 +1,13 @@
+---
+layout: layout
+exclude_from_sitemap: true
+pagination:
+  per_page: 10
+---
+
+<% articles = page_articles if pagination? %>
+
+<% title = "Tag: #{tag_name}" %>
+<%= partial("partials/title", locals: {title: title}) %>
+<%= partial("partials/article_summary", locals: {articles: articles }) %>
+

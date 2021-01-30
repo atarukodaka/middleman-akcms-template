@@ -1,0 +1,20 @@
+---
+title: Archives
+group: navigation
+exclude_from_sitemap: true
+type: summary
+pagination:
+  per_page: 20
+---
+<h1>Archives</h1>
+
+<% articles = page_articles if pagination? %>
+
+<% articles.group_by {|a| a.date.beginning_of_month }.each {|date, articles| %>
+  <h3><%= date.strftime("%b %Y") %></h3>
+  <ul>
+   <% articles.each {|article|%>
+     <li><%= link_to(h(article.title), article) %></li>
+   <% } %>
+   </ul>
+<% } %>

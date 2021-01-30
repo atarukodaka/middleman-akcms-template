@@ -1,0 +1,14 @@
+<div class="references">
+  <div class="header">
+    Sibling Articles under '<%= link_to(h(current_resource.directory.name), current_resource.parent) %>'
+  </div>
+  <ul>
+    <% current_resource.siblings.first(10).each do |res| %>
+    <% next if ! res.is_article? %>
+    <li><%= link_to(h(res.title), res) %></li>
+    <% end %>
+    <% if current_resource.siblings.size > 10 %>
+    <li><%= link_to("...", current_resource.parent) %></li>
+    <% end %>
+  </ul>
+</div>

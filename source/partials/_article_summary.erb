@@ -1,0 +1,19 @@
+
+<!-- required locals: articles -->
+
+<!-- articles to display excluding current_resource -->
+<% articles.reject {|p| p == current_resource}.each do |article| %>
+<article class="article_summary">
+  <header>
+    <h1><%= link_to(h(article.title), article) %></h1>
+    <%= partial("partials/article_info", locals: {article: article}) %>
+  </header>
+  <div>
+    <%= article.summary %>...
+  </div>
+  <div class="continue_reading">
+    <%= link_to("continue reading&rarr;", article) %>
+  </div>
+</article>
+<% end %>
+

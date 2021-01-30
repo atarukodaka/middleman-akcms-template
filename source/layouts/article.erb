@@ -1,0 +1,21 @@
+<% wrap_layout :layout do %>
+
+<article>
+  <header>
+    <h1><%= yield_content(:title) || h(current_resource.title) %></h1>
+    <%= partial("partials/article_info", locals: { article: current_resource }) %>
+    <!-- render_toc(current_resource)  -->
+  </header>
+
+  <div class="content numbering_headings">
+    <%= yield %>
+  </div>
+
+  <footer>
+    <%= partial("partials/pager") %>
+    <%= partial("partials/siblings") %>
+  </footer>
+</article>
+
+<% end %>
+

@@ -1,0 +1,22 @@
+<% if pagination? %>
+<footer>
+  <nav class="text-center">
+    <ul class="pagination">
+      <li class="page-item <%= "disabled" if paginator[:prev_page].nil? %>">
+	<%= link_to("&laquo;", paginator[:prev_page]) %>
+      </li>
+      <!-- % pagination_display_pages(10).each do |res| % -->
+      <% paginator[:paginated_resources_for_navigation].call(current_resource, 5).each do |res| %>
+      <li class="page-item <%= "active" if res == current_resource %>">
+	<%= link_to(res.locals[:paginator][:page_number], res) %>
+      </li>
+      <% end %>
+      <li class="page-item <%= "disabled" if paginator[:next_page].nil? %>">
+	<%= link_to("&raquo;", paginator[:next_page]) %>
+      </li>
+    </ul>
+  </nav>
+</footer>
+<% end %>
+
+

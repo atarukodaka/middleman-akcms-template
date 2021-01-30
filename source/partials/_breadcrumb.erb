@@ -1,0 +1,21 @@
+<nav>
+  <ol class="breadcrumb">
+    <li><%= link_to("Home", sitemap.find_directory_index("")) %></li>
+
+    <% current_resource.ancestors.reverse.map do |res| %>
+    <% next if res == sitemap.find_directory_index("") %>
+    <li>
+      <%= link_to(h(res.data.title || res.directory.name), res) %>
+    </li>
+    <% end%>
+
+    <li class="active">
+      <%= h(yield_content(:title) || current_resource.data.title) %>
+      <% if pagination? && paginator[:num_pages] > 1 %>
+      (page <%= paginator[:page_number] %> / <%= paginator[:num_pages] %>)
+      <% end %>
+    </li>
+  </ol>
+</nav>
+
+         

@@ -1,0 +1,15 @@
+<nav>
+  <ul class="pager">
+    <% if prev_article = current_resource.prev_article() %>
+    <li class="previous">
+      <%= link_to("&larr;".html_safe + h(prev_article.title),  prev_article, title: prev_article.title)%>
+    </li>
+    <% end %>
+    
+    <% if next_article = current_resource.next_article() %>
+    <li class="next">
+      <%= link_to(h(next_article.title) + "&rarr;".html_safe,  next_article, title: next_article.title) %>
+      </li>
+    <% end %>
+  </ul>
+</nav>

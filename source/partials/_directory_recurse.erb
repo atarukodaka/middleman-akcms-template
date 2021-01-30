@@ -1,0 +1,27 @@
+
+<!-- required locals: resource, options -->
+
+<% options ||= {} %>
+
+<% return "" if resource.data.exclude_from_sitemap %>
+
+
+<li>
+  <% title = resource.data.title %>
+  <% title ||= resource.directory.name if resource.directory_index? %>
+  <% title ||= File.basename(resource.path) %>
+  <%= link_to(h(title), resource) %>
+  
+  <% children = resource.children %>
+  <% unless children.empty? %>
+  <ul>
+    <% children.each do |child| %>
+    <% next if options[:directory_only] && (! child.directory_index?) %>
+    <% next if File.extname(child.path) != ".html" %>
+    <% next if (child.locals[:paginator]) && (child.locals[:paginator][:page_number] > 1) %>
+    <%= partial("partials/directory_recurse", locals: {resource: child, options: options}) %>
+    <% end %>
+  </ul>
+  <% end %>
+</li>
+

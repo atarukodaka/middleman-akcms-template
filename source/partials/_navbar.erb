@@ -1,0 +1,21 @@
+
+<nav class="navbar navbar-default">
+  <div class="navbar-header">
+    <button type="button" data-toggle="collapse" data-target="#topHeader" class="navbar-toggle">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+  </div>
+  <div class="collapse navbar-collapse" id="topHeader">
+    <ul class="nav navbar-nav">
+      <li><%= link_to("Home", sitemap.find_directory_index("")) %></li>
+      <% sitemap.resources.select {|p|
+	 p.data.group == "navigation" && (!p.locals.has_key?(:paginator) || p.locals[:paginator].page_number == 1)}.
+	 each do |page| %>
+      <li><%= link_to(h(page.data.title), page) %></li>
+      <% end %>
+    </ul>
+  </div>
+</nav>
